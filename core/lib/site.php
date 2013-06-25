@@ -11,7 +11,7 @@ class site extends object {
     }
 
     function load() {
-        tpl::set( 'site', $this );
+        Tpl::set( 'site', $this );
 
         mod::load( $this->module );
         Tpl::load( $this->module );
