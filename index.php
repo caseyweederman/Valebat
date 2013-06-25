@@ -10,16 +10,16 @@ Variables below should not be changed.
 
 The configuration file is at:
 
-	site/config/config.php
+    site/config/config.php
 
 */
 
 $root = dirname(__FILE__);
-$rootCore = $root . '/core';
-$rootSite = $root . '/site';
+$rootCore = $root . DIRECTORY_SEPARATOR . 'core';
+$rootSite = $root . DIRECTORY_SEPARATOR . 'site';
 
-if( !file_exists( $rootCore . '/valebat.php' ) ) {
-	die( 'The system could not be loaded' );
+if( !file_exists( $rootCore . DIRECTORY_SEPARATOR . 'valebat.php' ) ) {
+    die( 'The system could not be loaded' );
 }
 
-require_once( $rootCore . '/valebat.php' );
+require_once( $rootCore . DIRECTORY_SEPARATOR . 'valebat.php' );

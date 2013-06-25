@@ -10,38 +10,38 @@
 #   Sample .htaccess file of CMS MODx: modxcms.com
 
 <IfModule mod_mime.c>
-	# JavaScript
-	# normalize to standard type (it's sniffed in IE anyways)
-	# <tools.ietf.org/html/rfc4329#section-7.2>
-	AddType application/javascript js
+    # JavaScript
+    # normalize to standard type (it's sniffed in IE anyways)
+    # <tools.ietf.org/html/rfc4329#section-7.2>
+    AddType application/javascript js
 
-	# XML / RSS
-	AddType application/xml xml
-	AddType application/rss+xml rss
+    # XML / RSS
+    AddType application/xml xml
+    AddType application/rss+xml rss
 
-	# SVG
-	# required for svg webfonts on iPad
-	# <twitter.com/FontSquirrel/status/14855840545>
-	AddType image/svg+xml svg svgz
-	AddEncoding gzip svgz
+    # SVG
+    # required for svg webfonts on iPad
+    # <twitter.com/FontSquirrel/status/14855840545>
+    AddType image/svg+xml svg svgz
+    AddEncoding gzip svgz
 
-	# webfonts
-	AddType application/vnd.ms-fontobject eot
-	AddType application/x-font-ttf ttf ttc
-	AddType font/opentype otf
-	AddType application/x-font-woff woff
+    # webfonts
+    AddType application/vnd.ms-fontobject eot
+    AddType application/x-font-ttf ttf ttc
+    AddType font/opentype otf
+    AddType application/x-font-woff woff
 
-	# Assorted types
-	AddType image/x-icon ico
-	AddType image/webp webp
-	AddType application/x-shockwave-flash swf
+    # Assorted types
+    AddType image/x-icon ico
+    AddType image/webp webp
+    AddType application/x-shockwave-flash swf
 
-	AddCharset utf-8 .css .js .rss .xml
+    AddCharset utf-8 .css .js .rss .xml
 </IfModule>
 
 <Files "index.xml">
-	# 'index.xml' (unlike 'sitemap.xml') is an RSS feed
-	ForceType application/rss+xml
+    # 'index.xml' (unlike 'sitemap.xml') is an RSS feed
+    ForceType application/rss+xml
 </Files>
 
 # compression:
@@ -301,8 +301,8 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
 # ----------------------------------------------------------------------
 
 <IfModule mod_rewrite.c>
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule ^(.*)$ index.php?module=$1 [QSA,L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?module=$1 [QSA,L]
 </IfModule>
 
