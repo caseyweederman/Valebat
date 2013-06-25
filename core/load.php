@@ -15,7 +15,6 @@ class load {
 
         self::loadLib( 'helpers.php' );
         self::loadLib( 'module.php' );
-        self::loadLib( 'template.php' );
         self::loadLib( 'obj.php' );
         self::loadLib( 'site.php' );
         self::loadLib( 'page.php' );

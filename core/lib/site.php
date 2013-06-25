@@ -14,6 +14,6 @@ class site extends obj {
         tpl::set( 'site', $this );
 
         mod::load( $this->module );
-        tpl::load( $this->module );
+        Tpl::load( $this->module );
     }
 }
