@@ -9,7 +9,7 @@ class mod {
     static function get() {
         $module = get( 'module', 'home' );
         $file = c::get( 'root.modules' ) . DS . $module . '.php';
-        return ( !file_exists( $file ) ) ? 'home' : $module;
+        return ( !f::exists( $file ) ) ? 'home' : $module;
     }
 
     static function load( $module = 'home' ) {

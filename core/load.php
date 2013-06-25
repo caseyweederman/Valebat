@@ -21,15 +21,11 @@ class load {
     }
 
     static function loadLib( $name ) {
-        $name = c::get( 'root.lib' ) . DS . $name;
-        if( !file_exists( $name ) )
-            return false;
-        require_once( $name );
+        $file = c::get( 'root.lib' ) . DS . $name;
+        self::loadFile( $file );
     }
 
     static function loadFile( $file ) {
-        if( !file_exists( $file ) )
-            return false;
-        require_once( $file );
+        f::load( $file );
     }
 }
