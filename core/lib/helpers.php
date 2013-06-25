@@ -17,7 +17,7 @@ function home() {
 }
 
 function snippet( $snippet, $data = array() ) {
-    return Tpl::loadFile( c::get( 'root.snippets' ) . DS . $snippet . '.php', $data );
+    return tpl::loadFile( c::get( 'root.snippets' ) . DS . $snippet . '.php', $data );
 }
 
 function css( $url, $media = false ) {

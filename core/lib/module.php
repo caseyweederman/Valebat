@@ -4,7 +4,7 @@
 if( !defined( 'VALEBAT' ) )
     die( 'Direct access is not allowed' );
 
-class mod {
+class Mod {
 
     static function get() {
         $module = get( 'module', 'home' );
@@ -12,7 +12,7 @@ class mod {
         return ( !f::exists( $file ) ) ? 'home' : $module;
     }
 
-    static function load( $module = 'home' ) {
+    static function load( $module ) {
         $file = c::get( 'root.modules' ) . DS . $module . '.php';
         require_once( $file );
         $class = 'mod_' . $module;

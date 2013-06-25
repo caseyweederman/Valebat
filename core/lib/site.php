@@ -4,16 +4,16 @@
 if( !defined( 'VALEBAT' ) )
     die( 'Direct access is not allowed' );
 
-class site extends object {
+class Site extends object {
 
     function __construct() {
         $this->module = mod::get();
     }
 
     function load() {
-        Tpl::set( 'site', $this );
+        tpl::set( 'site', $this );
 
         mod::load( $this->module );
-        Tpl::load( $this->module );
+        tpl::load( $this->module );
     }
 }

@@ -4,7 +4,7 @@
 if( !defined( 'VALEBAT' ) )
     die( 'Direct access is not allowed' );
 
-class load {
+class Load {
 
     static function autoload() {
         $core = c::get( 'root.core' );

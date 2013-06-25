@@ -4,6 +4,6 @@
 if( !defined( 'VALEBAT' ) )
     die( 'Direct access is not allowed' );
 
-class page extends object {
+class Page extends object {
 
 }
