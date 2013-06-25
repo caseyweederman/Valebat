@@ -4,7 +4,7 @@
 if( !defined( 'VALEBAT' ) )
     die( 'Direct access is not allowed' );
 
-class site extends obj {
+class site extends object {
 
     function __construct() {
         $this->module = mod::get();
