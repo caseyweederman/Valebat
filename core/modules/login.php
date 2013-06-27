@@ -24,6 +24,8 @@ class mod_login {
             $action = $action;
         }
 
+        $page->action = $action;
+
         if( $action ) {
             $page->return = self::$action();
         }
