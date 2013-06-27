@@ -29,8 +29,12 @@ class Auth {
         $password = get( 'password' );
         $username = get( 'username' );
 
-        if( empty( $username ) || empty( $password ) )
-            return false;
+        if( empty( $username ) || empty( $password ) ) {
+            return array(
+                'status' => 'error',
+                'msg'    => 'Invalid username or password'
+            );
+        }
 
         $account = self::load( $username );
 
@@ -69,7 +73,60 @@ class Auth {
     }
 
     static function register() {
+        $password = get( 'password' );
+        $username = get( 'username' );
+        $email = get( 'email' );
 
+        if( empty( $username ) || empty( $password ) ) {
+            return array(
+                'status' => 'error',
+                'msg'    => 'Invalid username or password'
+            );
+        }
+
+        if( self::load( $username ) ) {
+            return array(
+                'status' => 'error',
+                'msg'    => 'Username already in use'
+            );
+        }
+
+        if( !v::email( $email ) ) {
+            return array(
+                'status' => 'error',
+                'msg'    => 'Invalid email address'
+            );
+        }
+
+        if( !v::between( $password, 8, 20 ) ) {
+            return array(
+                'status' => 'error',
+                'msg'    => 'Passwords should be between 8 and 20 characters in length'
+            );
+        }
+
+        if( !( 
+            v::match( $password, '/^([a-z])+$/i' ) &&
+            v::match( $password, '/^([A-Z])+$/i' ) &&
+            v::match( $password, '/^([\d\W])+$/i' ) && ) ) {
+            return array(
+                'status' => 'error',
+                'msg'    => 'Passwords must contain upper and lower case letters and a digit or symbol'
+            );
+        }
+
+        $hash = self::hash( $password );
+
+        $insert = array(
+            'username'  => $username,
+            'password'  => $hash,
+            'email'     => $email
+            );
+        db::insert( 'users', $insert );
+        
+        return array(
+            'status' => 'success'
+        );
     }
 
     static function user() {
