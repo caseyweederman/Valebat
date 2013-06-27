@@ -2,8 +2,4 @@
 
         <h1>Heading</h1>
 
-<?php
-echo $site->page()->var();
-?>
-
 <?php snippet( 'footer' ); ?>
