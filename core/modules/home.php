@@ -12,6 +12,8 @@ class mod_home {
 
     static function run() {
 
+        load::loadLib( 'auth.php' );
+
         $page = new page();
 
         $action = get( 'action' );

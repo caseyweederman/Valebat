@@ -6,20 +6,20 @@ if( !defined( 'VALEBAT' ) )
 
 s::start();
 
+define( "PBKDF2_HASH_ALGORITHM",    "sha256" );
+define( "PBKDF2_ITERATIONS",        1000 );
+define( "PBKDF2_SALT_BYTE_SIZE",    24 );
+define( "PBKDF2_HASH_BYTE_SIZE",    24 );
+
+define( "HASH_SECTIONS",            4 );
+define( "HASH_ALGORITHM_INDEX",     0 );
+define( "HASH_ITERATION_INDEX",     1 );
+define( "HASH_SALT_INDEX",          2 );
+define( "HASH_PBKDF2_INDEX",        3 );
+
 class Auth {
 
     static protected $user = null;
-
-    define( "PBKDF2_HASH_ALGORITHM",    "sha256" );
-    define( "PBKDF2_ITERATIONS",        1000 );
-    define( "PBKDF2_SALT_BYTE_SIZE",    24 );
-    define( "PBKDF2_HASH_BYTE_SIZE",    24 );
-
-    define( "HASH_SECTIONS",            4 );
-    define( "HASH_ALGORITHM_INDEX",     0 );
-    define( "HASH_ITERATION_INDEX",     1 );
-    define( "HASH_SALT_INDEX",          2 );
-    define( "HASH_PBKDF2_INDEX",        3 );
 
     static function login( $redirect ) {
         if( self::user() )
@@ -32,7 +32,7 @@ class Auth {
         if( empty( $username ) || empty( $password ) ) {
             return array(
                 'status' => 'error',
-                'msg'    => 'Invalid username or password'
+                'msg'    => 'Invalid username or password.'
             );
         }
 
@@ -41,23 +41,23 @@ class Auth {
         if( !$account ) {
             return array(
                 'status' => 'error',
-                'msg'    => 'Invalid username or password'
+                'msg'    => 'Invalid username or password.'
             );
         }
         if( str::lower( $account->username() ) != str::lower( $username ) ) {
             return array(
                 'status' => 'error',
-                'msg'    => 'Invalid username or password'
+                'msg'    => 'Invalid username or password.'
             );
         }
         if( !self::equals( $password, $account->password() ) ) {
             return array(
                 'status' => 'error',
-                'msg'    => 'Invalid username or password'
+                'msg'    => 'Invalid username or password.'
             );
         }
 
-        unset( $account->password() );
+        object::remove( $account->password() );
 
         $token = str::random();
         $account->token = $token;
@@ -72,6 +72,10 @@ class Auth {
         if( $redirect ) {
             go( url( $redirect ) );
         }
+        return array(
+            'status' => 'success',
+            'msg'    => 'You have been logged out.'
+        );
     }
 
     static function register() {
@@ -82,38 +86,38 @@ class Auth {
         if( empty( $username ) || empty( $password ) ) {
             return array(
                 'status' => 'error',
-                'msg'    => 'Invalid username or password'
+                'msg'    => 'Invalid username or password.'
             );
         }
-
+        
         if( self::load( $username ) ) {
             return array(
                 'status' => 'error',
-                'msg'    => 'Username already in use'
+                'msg'    => 'Username already in use.'
             );
         }
 
         if( !v::email( $email ) ) {
             return array(
                 'status' => 'error',
-                'msg'    => 'Invalid email address'
+                'msg'    => 'Invalid email address.'
             );
         }
 
         if( !v::between( $password, 8, 20 ) ) {
             return array(
                 'status' => 'error',
-                'msg'    => 'Passwords should be between 8 and 20 characters in length'
+                'msg'    => 'Passwords should be between 8 and 20 characters in length.'
             );
         }
 
         if( !( 
-            v::match( $password, '/^([a-z])+$/i' ) &&
-            v::match( $password, '/^([A-Z])+$/i' ) &&
-            v::match( $password, '/^([\d\W])+$/i' ) && ) ) {
+            v::match( $password, '/([a-z])+/' ) &&
+            v::match( $password, '/([A-Z])+/' ) &&
+            v::match( $password, '/([\d\W])+/' ) ) ) {
             return array(
                 'status' => 'error',
-                'msg'    => 'Passwords must contain upper and lower case letters and a digit or symbol'
+                'msg'    => 'Passwords must contain upper and lower case letters and a digit or symbol.'
             );
         }
 
@@ -127,7 +131,8 @@ class Auth {
         db::insert( 'users', $insert );
         
         return array(
-            'status' => 'success'
+            'status' => 'success',
+            'msg'    => 'You have successfully registered!'
         );
     }
 
@@ -150,7 +155,7 @@ class Auth {
 
         // make sure to remove the password
         // because this should never be visible to anybody
-        unset( $account->password() );
+        object::remove( $account->password() );
 
         if( empty( $account ) || $account->username() != $username )
             return self::$user = false;
