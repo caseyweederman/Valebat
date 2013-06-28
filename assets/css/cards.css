@@ -1,6 +1,7 @@
 .card{
 	position:absolute;
 	background-color: #F0F0F0;
+	background-image: url('assets/images/BlankCard.png');
 	height: 87px;
  width: 62px;
  border-radius: 5px;
