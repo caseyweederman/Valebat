@@ -18,7 +18,7 @@ class mod_home {
 
         if( empty( $action ) ) {
             $action = false;
-        } else if( !v::in( $action, $actions ) ) {
+        } else if( !v::in( $action, self::$actions ) ) {
             $action = false;
         } else {
             $action = $action;
