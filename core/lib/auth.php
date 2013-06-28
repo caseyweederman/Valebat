@@ -57,7 +57,7 @@ class Auth {
             );
         }
 
-        object::remove( $account->password() );
+        $account->remove( 'password' );
 
         $token = str::random();
         $account->token = $token;
@@ -155,7 +155,7 @@ class Auth {
 
         // make sure to remove the password
         // because this should never be visible to anybody
-        object::remove( $account->password() );
+        $account->remove( 'password' );
 
         if( empty( $account ) || $account->username() != $username )
             return self::$user = false;
