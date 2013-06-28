@@ -6,10 +6,10 @@ if( !defined( 'VALEBAT' ) )
 
 function url( $uri = false ) {
     $baseUrl = c::get( 'url' );
-    if( $uri && is_file( c::get( 'root' ) . DS . $uri ) ) {
-        return $baseUrl . DS . $uri;
+    if( $uri && is_file( c::get( 'root' ) . '/' . $uri ) ) {
+        return $baseUrl . '/' . $uri;
     }
-    return $baseUrl . DS . ltrim( $uri, '/' );
+    return $baseUrl . '/' . ltrim( $uri, '/' );
 }
 
 function home() {
