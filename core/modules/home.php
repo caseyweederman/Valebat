@@ -8,15 +8,43 @@ class mod_home {
 
     private static $page = null;
 
+    private static $actions = array( 'register', 'login', 'logout' );
+
     static function run() {
 
         $page = new page();
 
-        $page->var = 'Hello';
+        $action = get( 'action' );
+
+        if( empty( $action ) ) {
+            $action = false;
+        } else if( !v::in( $action, $actions ) ) {
+            $action = false;
+        } else {
+            $action = $action;
+        }
+
+        $page->action = $action;
+
+        if( $action ) {
+            $page->return = self::$action();
+        }
 
         global $site;
 
         $site->page = $page;
 
+    }
+
+    static function login() {
+        return auth::login( 'game' );
+    }
+
+    static function logout() {
+        return auth::logout();
+    }
+
+    static function register() {
+        return auth::register();
     }
 }

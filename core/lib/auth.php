@@ -67,9 +67,11 @@ class Auth {
         go( url( $redirect ) );
     }
 
-    static function logout( $redirect ) {
+    static function logout( $redirect = false ) {
         self::kill();
-        go( url( $redirect ) );
+        if( $redirect ) {
+            go( url( $redirect ) );
+        }
     }
 
     static function register() {
