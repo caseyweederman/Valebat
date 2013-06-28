@@ -17,6 +17,7 @@ class Load {
         self::loadLib( 'module.php' );
         self::loadLib( 'site.php' );
         self::loadLib( 'page.php' );
+        self::loadLib( 'auth.php' );
     }
 
     static function loadLib( $name ) {

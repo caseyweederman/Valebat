@@ -136,6 +136,11 @@ class Auth {
         );
     }
 
+    static function firewall() {
+        if( !self::user() )
+            home();
+    }
+
     static function user() {
 
         if( !is_null( self::$user ) )
