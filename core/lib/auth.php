@@ -23,7 +23,7 @@ class Auth {
 
     static function login( $redirect ) {
         if( self::user() )
-            go( url() );
+            go( url( $redirect ) );
         self::kill();
 
         $password = get( 'password' );
