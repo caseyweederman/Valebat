@@ -27,12 +27,10 @@
         	"element" => "dark", "rules" => "Do poison", "currency" => "3"),
 
         array("name" => "Goblin Tinker", "type" => "minion", "type2" => "minion",
-        	"element" => "industry", "rules" => "1 block", "currency" => "5")
+        	"element" => "industrial", "rules" => "1 block", "currency" => "5")
     );
 ?>
-
-<?php for( $t=0; $t <= 7; $t++ ) : ?>
-    <!--Me, snippet this or something
+<!--Me, snippet this or something
     <div id="card<?php echo $t; ?>" style="left:<?php echo (90 * $t); ?>" class="card" draggable="true" onmouseover="growImage(event, this);" onmouseout="shrinkImage(event, this);">
         <div class="type body"></div>
         <div class="element dark"></div>
@@ -44,16 +42,18 @@
         <div class="rightAug">rightAug</div>
     </div>
    -->
-   <div id="card<?php echo $t; ?>" style="left: <?php echo (90 * $t); ?>px" class="card" draggable="true" onmouseover="growImage(event, this);" onmouseout="shrinkImage(event, this);">
+<?php for( $t=0; $t <= 7; $t++ ) : ?>
+    
+   <div id="card<?php echo $t; ?>" style="left: <?php echo (90 * $t); ?>px" class="card" draggable="true">
         <div class="icon type <?php echo $cards[$t]['type']; ?>"></div>
         <div class="icon type2 <?php echo $cards[$t]['type']; ?>"></div>
         <div class="icon element <?php echo $cards[$t]['element']; ?>"></div>
-        <div class="augment leftAug">leftAug</div>
         <div class="cardTitle"><?php echo $cards[$t]['name']; ?></div>
-        <!--<img src="assets/images/card.png" class="cardImage" draggable="false" />-->
+        <div class="cardImage" style="background-image:url(assets/images/card.png);"></div>
         <div class="cardRule"><?php echo $cards[$t]['rules']; ?></div>
-        <div class="augment bottAug">bottAug</div>
-        <div class="augment rightAug">rightAug</div>
+        <div class="augment sideAug leftAug">leftAug seven eight nine ten eleven twelve thirteen</div>
+        <div class="augment bottAug">bottAug one two three four five six</div>
+        <div class="augment sideAug rightAug">rightAug sixteen seventeen eighteen nineteen twenty</div>
         <div class="icon currency"><?php echo $cards[$t]['currency']; ?></div>
     </div>
 <?php endfor; ?>
