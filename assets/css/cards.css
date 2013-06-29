@@ -1,5 +1,4 @@
 .card{
-	display:table;
 	position:absolute;
 	background-color: #F0F0F0;
 	background-image: url('../../assets/images/VB_Card_Background.jpeg');
@@ -9,7 +8,8 @@
  border-radius: 5px;
  border-style:solid;
  border-width:1px;
- overflow: hidden;
+ overflow-x: hidden;
+ overflow-y: hidden;
  font-family: 'Uncial Antiqua', cursive;
 }
 
