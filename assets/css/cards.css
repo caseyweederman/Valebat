@@ -1,9 +1,10 @@
 .card{
 	position:absolute;
 	background-color: #F0F0F0;
-	background-image: url('assets/images/BlankCard.png');
-	height: 87px;
- width: 62px;
+	background-image: url('../../assets/images/VB_Card_Background.jpeg');
+	background-repeat: no-repeat;
+	height: 105px;
+ width: 75px;
  border-radius: 5px;
  border-style:solid;
  border-width:1px;
@@ -11,6 +12,9 @@
 }
 
 .cardRule{
+}
+.augment{
+	position:absolute;
 }
 .leftAug{
 	-webkit-transform-origin: 100% 50%;
@@ -39,10 +43,99 @@
 	right: 0;
 }
 .bottAug{
-	
- 
  bottom:0;
+ text-align: center;
 }
 .cardTitle{
+	font-weight:bold;
  text-align: center;
+}
+
+/*Type and element classes*/
+.icon{
+	background-image:url('../../assets/images/icons.png');
+ width:32px;
+ height:32px;
+ position:absolute;
+ opacity:0.7;
+}
+.type{
+ top:0px;
+ left:0px;
+}
+.type2{
+ top:0px;
+ right:0px;
+}
+.element{
+ bottom:0px;
+ left:0px;
+}
+.currency{
+	bottom:0px;
+	right:0px;
+	background-position:-64px -64px;
+	text-align:center;
+	line-height: 16px;
+}
+
+/*Adventurer equipment slots*/
+.head{
+	background-position:0px -32px;
+}
+.hand{
+	background-position:0px -64px;
+}
+.torso{
+	background-position:0px 0px;
+}
+
+/*Dungeon subtypes*/
+.barricade{
+	background-position:-32px -32px;
+}
+.trap{
+	background-position:-32px -64px;
+}
+.minion{
+	background-position:-32px 0px;
+}
+
+/*elements*/
+.dark{
+ background-position:-96px 0px;
+}
+.divine{
+ background-position:-64px 0px;
+}
+.nature{
+	background-position:-64px -32px
+}
+.industrial{
+	background-position:-96px -32px;
+}
+.none{
+	background-position:-96px -64px;
+}
+
+/*combination elements, alphabetical in pairings*/
+.darkIndustrial{
+	background-position:-128px 0px;
+}
+.divineNature{
+ background-position:-160px 0px;
+}
+
+.divineIndustrial{
+	background-position:-96px -32px;
+}
+.industrialNature{
+ background-position:-160px -32px;
+}
+
+.darkNature{
+	background-position:-96px -64px;
+}
+.darkDivine{
+ background-position:-160px -64px;
 }

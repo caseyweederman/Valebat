@@ -2,8 +2,8 @@ function growImage(event, card){
 
  $(card).animate({
  	zIndex: '100',
- 	height: '350px',
- 	width: '250px'
+ 	height: '315px',
+ 	width: '225px'
  }, 40);
 }
 function shrinkImage(event, card){
@@ -13,7 +13,7 @@ function shrinkImage(event, card){
  }
  $(card).animate({
  	zIndex: '0',
- 	height: '87px',
- 	width: '62px'
+ 	height: '105px',
+ 	width: '75px'
  }, 40);
 }
