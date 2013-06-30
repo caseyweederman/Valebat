@@ -245,7 +245,7 @@ class Auth {
 
         $username = str::lower( $username );
 
-        $select = array( 'username', 'password' );
+        $select = array( 'username', 'password', 'id' );
         $where = array( 'username' => $username );
         $u = db::row( 'users', $select, $where );
         if( db::affected() < 1 )
