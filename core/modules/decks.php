@@ -10,7 +10,15 @@ class mod_decks {
 
     static function run() {
 
+        auth::firewall();
+
         $page = new page();
+
+        $user = auth::user();
+
+        $where = array( 'owner' => $user->id() );
+        $decks = db::select( 'decks', '*', $where );
+        $decks = a::remove( $decks, 'owner' );
 
         global $site;
 
