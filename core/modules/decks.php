@@ -4,7 +4,7 @@
 if( !defined( 'VALEBAT' ) )
     die( 'Direct access is not allowed' );
 
-class mod_home {
+class mod_decks {
 
     private static $page = null;
 
