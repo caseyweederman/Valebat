@@ -6,6 +6,7 @@ function growImage(event, card){
  	width: '225px'
  }, 40);
 }
+
 function shrinkImage(event, card){
 	e = event.toElement || event.relatedTarget;
  if(e.parentNode == card || e == card){
@@ -16,4 +17,5 @@ function shrinkImage(event, card){
  	height: '105px',
  	width: '75px'
  }, 40);
+
 }
