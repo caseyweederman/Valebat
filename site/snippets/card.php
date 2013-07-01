@@ -1,7 +1,7 @@
    <div id="card<?php echo $card['id']; ?>" style="left: <?php echo ( 90 * $card['id'] ); ?>px" class="card" draggable="true">
         <div class="icon type <?php echo $card['type']; ?>"></div>
         <div class="icon type2 <?php echo $card['type']; ?>"></div>
-        <div class="icon element <?php echo $card['element']; ?>"></div>
+<?php if($card['element'] != "none") : ?>        <div class="icon element <?php echo $card['element']; ?>"></div> <?php endif; ?>
         <div class="cardTitle"><?php echo $card['name']; ?></div>
         <div class="cardImage" style="background-image:url(assets/images/card.png);"></div>
         <div class="cardRule"><?php echo $card['rules']; ?></div>

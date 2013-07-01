@@ -1,0 +1,80 @@
+.playmat{
+	position: relative;
+	border-radius: 5px;
+	width: 492px;
+	height: 720px;
+	border-radius: 5px;
+	float: left;
+	z-index: 1;
+	margin:5px;
+}
+
+.slot{
+	position:absolute;
+	background-color:#111111;
+	opacity:0.5;
+ height:105px;
+	width:75px;
+	background-repeat:no-repeat;
+	border-radius:5px;
+}
+
+.slotIcon{
+	background-image:url('../../assets/images/icons.png');
+ width:32px;
+ height:32px;
+ z-index:3;
+ margin:auto;
+ margin-top:36px;
+ -webkit-transform:scale(2,2);
+}
+
+.headSlot{
+	left:139px;
+	top:169px;
+}
+
+.handLeftSlot{
+	top:306px;
+	left:32px;
+}
+
+.handRightSlot{
+	top:306px;
+	left:246px;
+}
+
+.torsoSlot{
+	top:443px;
+	left:139px;
+}
+
+.dungeon{/*for slot icon*/
+	background-image:url('../../assets/images/icons.png');
+ background-position:-32px 0px;
+ height:96px;
+ width:32px;
+ margin:auto;
+ margin-top:4px;
+}
+
+.dungeon1{
+ top: 32px;
+ left: 385px;
+}
+.dungeon2{
+ top: 169px;
+ left: 385px;
+}
+.dungeon3{
+ top: 306px;
+ left: 385px;
+}
+.dungeon4{
+ top: 443px;
+ left: 385px;
+}
+.ante{
+ top: 580px;
+ left: 385px;
+}
