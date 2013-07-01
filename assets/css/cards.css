@@ -11,6 +11,7 @@
  overflow-x: hidden;
  overflow-y: hidden;
  font-family: 'Uncial Antiqua', cursive;
+ z-index:5;
 }
 
 .cardImage{
@@ -86,6 +87,7 @@
 	position:absolute;
 	display:none;
 	line-height:0.9;
+	z-index:3;
 }
 
 	.leftAug{
@@ -194,9 +196,6 @@
 }
 .industrial{
 	background-position:-96px -32px;
-}
-.none{
-	background-position:-96px -64px;
 }
 
 /*combination elements, alphabetical in pairings*/
