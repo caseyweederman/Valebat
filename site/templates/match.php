@@ -44,7 +44,7 @@
    -->
 <?php for( $t=0; $t <= 7; $t++ ) : ?>
     
-   <?php snippet( 'card', array("card" => $cards[$t])); ?>
+   <?php snippet( 'card', array( "card" => $cards[$t] ) ); ?>
 
 <?php endfor; ?>
 

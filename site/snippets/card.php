@@ -1,4 +1,4 @@
-   <div id="card<?php echo $card['id']; ?>" style="left: <?php echo (90 * $card['id']); ?>px" class="card" draggable="true">
+   <div id="card<?php echo $card['id']; ?>" style="left: <?php echo ( 90 * $card['id'] ); ?>px" class="card" draggable="true">
         <div class="icon type <?php echo $card['type']; ?>"></div>
         <div class="icon type2 <?php echo $card['type']; ?>"></div>
         <div class="icon element <?php echo $card['element']; ?>"></div>
