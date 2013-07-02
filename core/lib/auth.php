@@ -129,6 +129,13 @@ class Auth {
             'email'     => $email
             );
         db::insert( 'users', $insert );
+
+        $user = self::load( $username );
+
+        $insert = array(
+            'owner'     => $user->id()
+            );
+        db::insert( 'settings', $insert );
         
         return array(
             'status' => 'success',

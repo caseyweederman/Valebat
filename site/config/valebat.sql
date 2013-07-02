@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 02, 2013 at 11:04 AM
+-- Generation Time: Jul 02, 2013 at 11:26 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -90,6 +90,25 @@ CREATE TABLE IF NOT EXISTS `vale_inventories` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `vale_settings`
+--
+
+CREATE TABLE IF NOT EXISTS `vale_settings` (
+  `owner` int(11) NOT NULL,
+  `decks` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`owner`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `vale_settings`
+--
+
+INSERT INTO `vale_settings` (`owner`, `decks`) VALUES
+(1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `vale_users`
 --
 
@@ -123,6 +142,12 @@ ALTER TABLE `vale_decks`
 --
 ALTER TABLE `vale_inventories`
   ADD CONSTRAINT `vale_inventories_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `vale_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `vale_settings`
+--
+ALTER TABLE `vale_settings`
+  ADD CONSTRAINT `vale_settings_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `vale_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
