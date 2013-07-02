@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 02, 2013 at 10:16 AM
+-- Generation Time: Jul 02, 2013 at 11:04 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -69,7 +69,8 @@ CREATE TABLE IF NOT EXISTS `vale_decks` (
   `card38` int(11) DEFAULT NULL,
   `card39` int(11) DEFAULT NULL,
   `card40` int(11) DEFAULT NULL,
-  PRIMARY KEY (`owner`,`name`)
+  PRIMARY KEY (`owner`,`name`),
+  KEY `owner` (`owner`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -82,7 +83,8 @@ CREATE TABLE IF NOT EXISTS `vale_inventories` (
   `owner` int(11) NOT NULL,
   `card` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  PRIMARY KEY (`owner`,`card`)
+  PRIMARY KEY (`owner`,`card`),
+  KEY `owner` (`owner`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -105,6 +107,22 @@ CREATE TABLE IF NOT EXISTS `vale_users` (
 
 INSERT INTO `vale_users` (`id`, `username`, `password`, `email`) VALUES
 (1, 'ben', 'sha256:1000:LmRgeknxqUOCrk53BfcVy/mb1V+JN3Jm:zCcgkvLqfdC4iJm+zkKFkYvIfAibnOOo', 'ben@walkerbox.co.uk');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `vale_decks`
+--
+ALTER TABLE `vale_decks`
+  ADD CONSTRAINT `vale_decks_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `vale_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `vale_inventories`
+--
+ALTER TABLE `vale_inventories`
+  ADD CONSTRAINT `vale_inventories_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `vale_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
