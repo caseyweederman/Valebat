@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 30, 2013 at 11:56 PM
+-- Generation Time: Jul 02, 2013 at 10:16 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -68,7 +68,21 @@ CREATE TABLE IF NOT EXISTS `vale_decks` (
   `card37` int(11) DEFAULT NULL,
   `card38` int(11) DEFAULT NULL,
   `card39` int(11) DEFAULT NULL,
-  `card40` int(11) DEFAULT NULL
+  `card40` int(11) DEFAULT NULL,
+  PRIMARY KEY (`owner`,`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vale_inventories`
+--
+
+CREATE TABLE IF NOT EXISTS `vale_inventories` (
+  `owner` int(11) NOT NULL,
+  `card` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  PRIMARY KEY (`owner`,`card`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -84,6 +98,13 @@ CREATE TABLE IF NOT EXISTS `vale_users` (
   `email` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `vale_users`
+--
+
+INSERT INTO `vale_users` (`id`, `username`, `password`, `email`) VALUES
+(1, 'ben', 'sha256:1000:LmRgeknxqUOCrk53BfcVy/mb1V+JN3Jm:zCcgkvLqfdC4iJm+zkKFkYvIfAibnOOo', 'ben@walkerbox.co.uk');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
