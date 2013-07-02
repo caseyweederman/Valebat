@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 02, 2013 at 11:26 AM
+-- Generation Time: Jul 02, 2013 at 09:40 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -27,51 +27,27 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `vale_decks` (
+  `deck` int(11) NOT NULL,
+  `position` int(11) NOT NULL,
+  `card` int(11) NOT NULL,
+  PRIMARY KEY (`deck`,`position`),
+  KEY `deck` (`deck`),
+  KEY `card` (`card`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vale_deck_names`
+--
+
+CREATE TABLE IF NOT EXISTS `vale_deck_names` (
+  `deck` int(11) NOT NULL AUTO_INCREMENT,
   `owner` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `card1` int(11) DEFAULT NULL,
-  `card2` int(11) DEFAULT NULL,
-  `card3` int(11) DEFAULT NULL,
-  `card4` int(11) DEFAULT NULL,
-  `card5` int(11) DEFAULT NULL,
-  `card6` int(11) DEFAULT NULL,
-  `card7` int(11) DEFAULT NULL,
-  `card8` int(11) DEFAULT NULL,
-  `card9` int(11) DEFAULT NULL,
-  `card10` int(11) DEFAULT NULL,
-  `card11` int(11) DEFAULT NULL,
-  `card12` int(11) DEFAULT NULL,
-  `card13` int(11) DEFAULT NULL,
-  `card14` int(11) DEFAULT NULL,
-  `card15` int(11) DEFAULT NULL,
-  `card16` int(11) DEFAULT NULL,
-  `card17` int(11) DEFAULT NULL,
-  `card18` int(11) DEFAULT NULL,
-  `card19` int(11) DEFAULT NULL,
-  `card20` int(11) DEFAULT NULL,
-  `card21` int(11) DEFAULT NULL,
-  `card22` int(11) DEFAULT NULL,
-  `card23` int(11) DEFAULT NULL,
-  `card24` int(11) DEFAULT NULL,
-  `card25` int(11) DEFAULT NULL,
-  `card26` int(11) DEFAULT NULL,
-  `card27` int(11) DEFAULT NULL,
-  `card28` int(11) DEFAULT NULL,
-  `card29` int(11) DEFAULT NULL,
-  `card30` int(11) DEFAULT NULL,
-  `card31` int(11) DEFAULT NULL,
-  `card32` int(11) DEFAULT NULL,
-  `card33` int(11) DEFAULT NULL,
-  `card34` int(11) DEFAULT NULL,
-  `card35` int(11) DEFAULT NULL,
-  `card36` int(11) DEFAULT NULL,
-  `card37` int(11) DEFAULT NULL,
-  `card38` int(11) DEFAULT NULL,
-  `card39` int(11) DEFAULT NULL,
-  `card40` int(11) DEFAULT NULL,
-  PRIMARY KEY (`owner`,`name`),
+  `name` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`deck`),
   KEY `owner` (`owner`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -85,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `vale_inventories` (
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`owner`,`card`),
   KEY `owner` (`owner`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -97,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `vale_settings` (
   `owner` int(11) NOT NULL,
   `decks` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`owner`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `vale_settings`
@@ -114,11 +90,11 @@ INSERT INTO `vale_settings` (`owner`, `decks`) VALUES
 
 CREATE TABLE IF NOT EXISTS `vale_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(32) NOT NULL,
-  `password` varchar(256) NOT NULL,
-  `email` varchar(128) NOT NULL,
+  `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `vale_users`
@@ -135,7 +111,13 @@ INSERT INTO `vale_users` (`id`, `username`, `password`, `email`) VALUES
 -- Constraints for table `vale_decks`
 --
 ALTER TABLE `vale_decks`
-  ADD CONSTRAINT `vale_decks_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `vale_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `vale_decks_ibfk_1` FOREIGN KEY (`deck`) REFERENCES `vale_deck_names` (`deck`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `vale_deck_names`
+--
+ALTER TABLE `vale_deck_names`
+  ADD CONSTRAINT `vale_deck_names_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `vale_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `vale_inventories`
