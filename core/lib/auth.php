@@ -104,6 +104,16 @@ class Auth {
             );
         }
 
+        $where = array(
+            'email' => $email
+            );
+        if( db::count( 'users', $where ) > 0 ) {
+            return array(
+                'status' => 'error',
+                'msg'    => 'Email address already in use.'
+            );
+        }
+
         if( !v::between( $password, 8, 20 ) ) {
             return array(
                 'status' => 'error',
