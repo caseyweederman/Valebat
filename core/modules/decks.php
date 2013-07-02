@@ -37,7 +37,7 @@ class mod_decks {
 
     }
 
-    static function switch( $cardId, $origin, $dest ) {
+    static function switchCard( $cardId, $origin, $dest ) {
 
         if( !v::in( $origin, $names ) ) {
             return array(
