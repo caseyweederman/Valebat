@@ -104,9 +104,7 @@ class Auth {
             );
         }
 
-        $where = array(
-            'email' => $email
-            );
+        $where = array( 'email' => $email );
         if( db::count( 'users', $where ) > 0 ) {
             return array(
                 'status' => 'error',
@@ -137,14 +135,12 @@ class Auth {
             'username'  => $username,
             'password'  => $hash,
             'email'     => $email
-            );
+        );
         db::insert( 'users', $insert );
 
         $user = self::load( $username );
 
-        $insert = array(
-            'owner'     => $user->id()
-            );
+        $insert = array( 'owner' => $user->id() );
         db::insert( 'settings', $insert );
         
         return array(
