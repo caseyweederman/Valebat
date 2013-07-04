@@ -18,19 +18,7 @@ class mod_decks {
 
         $user = auth::user();
 
-        $select = array( 'deck', 'name' );
-        $where = array( 'owner' => $user->id() );
-        $decks = db::select( 'deck_names', $select, $where );
-
-        $page->decks = array();
-
-        foreach( $decks as $deck ) {
-            a::set(
-                $page->decks(),
-                $deck->name(),
-                self::loadDeck( $deck->deck() )
-            );
-        }
+        $page->decks = self::loadDecks();
 
         global $site;
 
@@ -90,7 +78,27 @@ class mod_decks {
 
     }
 
+    static protected function loadDecks() {
+
+        $select = array( 'deck', 'name' );
+        $where = array( 'owner' => $user->id() );
+        $deckNames = db::select( 'deck_names', $select, $where );
+
+        $decks = array();
+
+        foreach( $deckNames as $deck ) {
+            a::set(
+                $decks,
+                $deck->name(),
+                self::loadDeck( $deck->deck() )
+            );
+        }
+
+        return $decks;
+    }
+
     static protected function loadDeck( $deckId ) {
+
         $select = array( 'position', 'card' );
         $where = array( 'deck' => $deckId );
         $cards = db::select( 'decks', $select, $where );
