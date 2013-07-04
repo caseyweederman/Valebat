@@ -59,13 +59,7 @@ class mod_decks {
         load::loadLib( 'settings.php' );
         $settings = settings::load();
 
-        if( v::same( $name, 'inv' ) ) {
-            return array(
-                'status' => 'error',
-                'msg'    => 'Decks cannot be named `inv`.'
-            );
-        }
-        if( array_key_exists($name, $page->decks() ) ) {
+        if( array_key_exists( $name, $page->decks() ) ) {
             return array(
                 'status' => 'error',
                 'msg'    => 'You already have a deck named `' . $name . '`.'
