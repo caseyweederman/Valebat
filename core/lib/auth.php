@@ -140,8 +140,16 @@ class Auth {
 
         $user = self::load( $username );
 
-        $insert = array( 'owner' => $user->id() );
+        $insert = array(
+            'owner'     => $user->id()
+        );
         db::insert( 'settings', $insert );
+
+        $insert = array(
+            'owner'     => $user->id(),
+            'name'      => 'inv'
+        );
+        db::insert( 'deck_names', $insert );
         
         return array(
             'status' => 'success',

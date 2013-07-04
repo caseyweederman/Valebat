@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 02, 2013 at 09:40 PM
+-- Generation Time: Jul 04, 2013 at 08:18 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -48,20 +48,6 @@ CREATE TABLE IF NOT EXISTS `vale_deck_names` (
   PRIMARY KEY (`deck`),
   KEY `owner` (`owner`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vale_inventories`
---
-
-CREATE TABLE IF NOT EXISTS `vale_inventories` (
-  `owner` int(11) NOT NULL,
-  `card` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  PRIMARY KEY (`owner`,`card`),
-  KEY `owner` (`owner`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -118,12 +104,6 @@ ALTER TABLE `vale_decks`
 --
 ALTER TABLE `vale_deck_names`
   ADD CONSTRAINT `vale_deck_names_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `vale_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `vale_inventories`
---
-ALTER TABLE `vale_inventories`
-  ADD CONSTRAINT `vale_inventories_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `vale_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `vale_settings`
