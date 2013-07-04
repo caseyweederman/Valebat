@@ -8,7 +8,6 @@ class mod_decks {
 
     private static $page = null;
 
-    private static $names = array();
     private static $user = null;
 
     static function run() {
@@ -19,17 +18,19 @@ class mod_decks {
 
         $user = auth::user();
 
+        $select = array( 'deck', 'name' );
         $where = array( 'owner' => $user->id() );
+        $decks = db::select( 'deck_names', $select, $where );
 
-        $decks = db::select( 'decks', '*', $where );
+        $page->decks = array();
 
         foreach( $decks as $deck ) {
-            $names[] = $n = $deck->name();
-            $page->decks->$$n = $deck->remove( 'owner' );
+            a::set(
+                $page->decks(),
+                $deck->name(),
+                self::loadDeck( $deck->deck() )
+            );
         }
-
-        $select = array( 'card', 'quantity' );
-        $inventory = db::select( 'inventories', $select, $where );
 
         global $site;
 
@@ -39,13 +40,13 @@ class mod_decks {
 
     static function switchCard( $cardId, $origin, $dest ) {
 
-        if( !v::in( $origin, $names ) ) {
+        if( !array_key_exists( $origin, $page->decks() ) ) {
             return array(
                 'status' => 'error',
                 'msg'    => 'Origin deck does not exist.'
             );
         }
-        if( !v::in( $dest, $names ) ) {
+        if( !array_key_exists( $dest, $page->decks() ) ) {
             return array(
                 'status' => 'error',
                 'msg'    => 'Destination deck does not exist.'
@@ -64,14 +65,14 @@ class mod_decks {
                 'msg'    => 'Decks cannot be named `inv`.'
             );
         }
-        if( v::in( $name, $names ) ) {
+        if( array_key_exists($name, $page->decks() ) ) {
             return array(
                 'status' => 'error',
                 'msg'    => 'You already have a deck named `' . $name . '`.'
             );
         }
 
-        $deckCount = count( $page->decks->toArray() );
+        $deckCount = count( $page->decks() );
         if( $deckCount >= $settings->decks() ) {
             return array(
                 'status' => 'error',
@@ -83,7 +84,7 @@ class mod_decks {
             'owner' => $user->id(),
             'name' => $name
         );
-        db::insert( 'decks', $insert );
+        db::insert( 'deck_names', $insert );
 
         return array(
             'status' => 'success',
@@ -93,6 +94,24 @@ class mod_decks {
 
     static function renameDeck() {
 
+    }
+
+    static protected function loadDeck( $deckId ) {
+        $select = array( 'position', 'card' );
+        $where = array( 'deck' => $deckId );
+        $cards = db::select( 'decks', $select, $where );
+
+        $deck = array();
+
+        foreach( $cards as $card ) {
+            a::set(
+                $deck,
+                $card->position(),
+                $card->card()
+            );
+        }
+
+        return $deck;
     }
 
 }
