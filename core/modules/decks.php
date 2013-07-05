@@ -7,34 +7,45 @@ if( !defined( 'VALEBAT' ) )
 class mod_decks {
 
     private static $page = null;
-
     private static $user = null;
+
+    private static $actions = array( 'switchCard', 'renameDeck', 'createDeck' );
 
     static function run() {
 
         auth::firewall();
 
-        $page = new page();
+        self::$page = new page();
 
-        $user = auth::user();
+        self::$user = auth::user();
 
-        $page->decks = self::loadDecks();
+        self::$page->decks = self::loadDecks();
+
+        self::$page->action = $func = getAction( self::$actions );
+        if( self::$page->action() ) {
+            self::$page->return = self::$func();
+        }
 
         global $site;
 
-        $site->page = $page;
+        $site->page = self::$page;
 
     }
 
-    static function switchCard( $cardId, $origin, $dest ) {
+    static function switchCard() {
 
-        if( !array_key_exists( $origin, $page->decks() ) ) {
+        $cardId = get( 'cardId' );
+        $origin = get( 'origin' );
+        $dest = get( 'dest' );
+        $originPos = get( 'originPos' );
+
+        if( !array_key_exists( $origin, self::$page->decks() ) ) {
             return array(
                 'status' => 'error',
                 'msg'    => 'Origin deck does not exist.'
             );
         }
-        if( !array_key_exists( $dest, $page->decks() ) ) {
+        if( !array_key_exists( $dest, self::$page->decks() ) ) {
             return array(
                 'status' => 'error',
                 'msg'    => 'Destination deck does not exist.'
@@ -42,19 +53,21 @@ class mod_decks {
         }
     }
 
-    static function createDeck( $name ) {
+    static function createDeck() {
+
+        $name = get( 'name' );
 
         load::loadLib( 'settings.php' );
         $settings = settings::load();
 
-        if( array_key_exists( $name, $page->decks() ) ) {
+        if( array_key_exists( $name, self::$page->decks() ) ) {
             return array(
                 'status' => 'error',
                 'msg'    => 'You already have a deck named `' . $name . '`.'
             );
         }
 
-        $deckCount = count( $page->decks() );
+        $deckCount = count( self::$page->decks() );
         if( $deckCount >= $settings->decks() ) {
             return array(
                 'status' => 'error',
@@ -63,7 +76,7 @@ class mod_decks {
         }
 
         $insert = array(
-            'owner' => $user->id(),
+            'owner' => self::$user->id(),
             'name' => $name
         );
         db::insert( 'deck_names', $insert );
@@ -81,7 +94,7 @@ class mod_decks {
     static protected function loadDecks() {
 
         $select = array( 'deck', 'name' );
-        $where = array( 'owner' => $user->id() );
+        $where = array( 'owner' => self::$user->id() );
         $deckNames = db::select( 'deck_names', $select, $where );
 
         $decks = array();
