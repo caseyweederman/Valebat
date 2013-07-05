@@ -16,6 +16,14 @@ function home() {
     go( url() );
 }
 
+function getAction( $allowed ) {
+    $action = get( 'action' );
+    if( empty( $action ) || !v::in( $action, $allowed ) ) {
+        return false;
+    }
+    return $action;
+}
+
 function snippet( $snippet, $data = array() ) {
     return tpl::loadFile( c::get( 'root.snippets' ) . DS . $snippet . '.php', $data );
 }
