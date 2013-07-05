@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 04, 2013 at 08:18 PM
+-- Generation Time: Jul 05, 2013 at 11:48 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -47,7 +47,14 @@ CREATE TABLE IF NOT EXISTS `vale_deck_names` (
   `name` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`deck`),
   KEY `owner` (`owner`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `vale_deck_names`
+--
+
+INSERT INTO `vale_deck_names` (`deck`, `owner`, `name`) VALUES
+(1, 1, 'inv');
 
 -- --------------------------------------------------------
 
