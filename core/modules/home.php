@@ -12,27 +12,16 @@ class mod_home {
 
     static function run() {
 
-        $page = new page();
+        self::$page = new page();
 
-        $action = get( 'action' );
-
-        if( empty( $action ) ) {
-            $action = false;
-        } else if( !v::in( $action, self::$actions ) ) {
-            $action = false;
-        } else {
-            $action = $action;
-        }
-
-        $page->action = $action;
-
-        if( $action ) {
-            $page->return = self::$action();
+        self::$page->action = $func = getAction( self::$actions );
+        if( self::$page->action() ) {
+            self::$page->return = self::$func();
         }
 
         global $site;
 
-        $site->page = $page;
+        $site->page = self::$page;
 
     }
 
