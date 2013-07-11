@@ -4,8 +4,7 @@
  if($num > $maxHex) $color = $num - (floor($num / $maxHex) * $maxHex);
  else $color = $num; 
  echo sprintf("%06X",$color); 
- ?>
-">
+ ?>">
  <div class="slot headSlot"><div class="slotIcon head"></div></div>
  <div class="slot handLeftSlot"><div class="slotIcon hand"></div></div>
  <div class="slot handRightSlot"><div class="slotIcon hand"></div></div>
