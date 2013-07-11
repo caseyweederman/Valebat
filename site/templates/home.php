@@ -7,39 +7,48 @@
         $msg = a::get( $ret, 'msg' );
     }
 ?>
+        <div class="grid">
+            <div class="col-left">
+                <h1 class="banner">Valebat</h1>
 
-        <h1 class="banner">Valebat</h1>
+                <div class="login-container">
 
-        <div class="login-container">
+                    <div id="loginbox" class="login-box">
+                        <h2>Login</h2>
+                        <form action="home?action=login" method="post">
+                            <input type="text" name="username" placeholder="Username" required />
+                            <input type="password" name="password" placeholder="Password" required />
+                            <input type="submit" value="Submit" />
+                        </form>
+                        <a href="#" id="register" class="button">Register</a>
+                    </div>
 
-            <div id="loginbox" class="login-box">
-                <h2>Login</h2>
-                <form action="home?action=login" method="post">
-                    <input type="text" name="username" placeholder="Username" required />
-                    <input type="password" name="password" placeholder="Password" required />
-                    <input type="submit" value="Submit" />
-                </form>
-                <a href="#" id="register" class="button">Register</a>
-            </div>
+                    <div id="registerbox" class="login-box">
+                        <h2>Register</h2>
+                        <form action="home?action=register" method="post">
+                            <input type="text" name="username" placeholder="Username" required />
+                            <input type="password" name="password" placeholder="Password" required />
+                            <input type="email" name="email" placeholder="Email" required />
+                            <input type="submit" value="Submit" />
+                        </form>
+                        <a href="#" id="login" class="button">Login</a>
+                    </div>
 
-            <div id="registerbox" class="login-box">
-                <h2>Register</h2>
-                <form action="home?action=register" method="post">
-                    <input type="text" name="username" placeholder="Username" required />
-                    <input type="password" name="password" placeholder="Password" required />
-                    <input type="email" name="email" placeholder="Email" required />
-                    <input type="submit" value="Submit" />
-                </form>
-                <a href="#" id="login" class="button">Login</a>
-            </div>
+                    <?php if( $site->page()->action() ) : ?>
+                        <div class="login-alert <?php echo $status; ?>">
+                            <h2><?php echo str::ucfirst( $status ); ?></h2>
+                            <p><?php echo $msg; ?></p>
+                        </div>
+                    <?php endif; ?>
 
-            <?php if( $site->page()->action() ) : ?>
-                <div class="login-alert <?php echo $status; ?>">
-                    <h2><?php echo str::ucfirst( $status ); ?></h2>
-                    <p><?php echo $msg; ?></p>
                 </div>
-            <?php endif; ?>
+            </div>
 
+            <div class="col-right">
+                <div class="news-feed">
+                    <h2>News Feed</h2>
+                </div>
+            </div>
         </div>
 
 <script type="text/javascript">
