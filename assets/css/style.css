@@ -204,6 +204,10 @@ body {
 .login-box {
     padding-top: 20px;
 }
+.login-box h2 {
+    color: #603317;
+    text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);
+}
 .login-box input {
     display: block;
     margin: 0 auto 20px;
@@ -263,7 +267,9 @@ body {
     width: 552px;
 }
 .news-feed h2 {
+    color: #603317;
     font-size: 2em;
     margin: 0;
     padding: 15px 0 0;
+    text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);
 }
