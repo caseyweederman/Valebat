@@ -90,6 +90,9 @@ class Auth {
             );
         }
         
+        $username   = str::lower( $username );
+        $email      = str::lower( $email );
+
         if( self::load( $username ) ) {
             return array(
                 'status' => 'error',
@@ -268,6 +271,19 @@ class Auth {
 
         $select = array( 'username', 'password', 'id' );
         $where = array( 'username' => $username );
+        $u = db::row( 'users', $select, $where );
+        if( db::affected() < 1 )
+            return false;
+
+        return new user( $u );
+    }
+
+    static protected function loadEmail( $email ) {
+
+        $email = str::lower( $email );
+
+        $select = array( 'username', 'password', 'id' );
+        $where = array( 'email' => $email );
         $u = db::row( 'users', $select, $where );
         if( db::affected() < 1 )
             return false;
