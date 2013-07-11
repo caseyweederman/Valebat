@@ -20,7 +20,7 @@
 }
 
 .slotIcon{
-	background-image:url('../../assets/images/icons.png');
+	background-image:url('../images/icons.png');
  width:32px;
  height:32px;
  z-index:3;
@@ -50,7 +50,7 @@
 }
 
 .dungeon{/*for slot icon*/
-	background-image:url('../../assets/images/icons.png');
+	background-image:url('../images/icons.png');
  background-position:-32px 0px;
  height:96px;
  width:32px;

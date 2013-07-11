@@ -1,7 +1,7 @@
 .card{
 	position:absolute;
 	background-color: #F0F0F0;
-	background-image: url('../../assets/images/VB_Card_Background.jpeg');
+	background-image: url('../images/VB_Card_Background.jpeg');
 	background-repeat: no-repeat;
 	height: 105px;
  width: 75px;
@@ -135,7 +135,7 @@
 
 /*Type and element classes*/
 .icon{
-	background-image:url('../../assets/images/icons.png');
+	background-image:url('../images/icons.png');
  width:32px;
  height:32px;
  position:absolute;
