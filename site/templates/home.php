@@ -10,11 +10,6 @@
 
         <h1 class="banner">Valebat</h1>
 
-        <?php if( $site->page()->action() ) : ?>
-            <h2><?php echo str::ucfirst( $status ); ?></h2>
-            <p><?php echo $msg; ?></p>
-        <?php endif; ?>
-
         <div class="login-container">
 
             <div id="loginbox" class="login-box">
@@ -38,21 +33,33 @@
                 <a href="#" id="login" class="button">Login</a>
             </div>
 
+            <?php if( $site->page()->action() ) : ?>
+                <div class="login-alert <?php echo $status; ?>">
+                    <h2><?php echo str::ucfirst( $status ); ?></h2>
+                    <p><?php echo $msg; ?></p>
+                </div>
+            <?php endif; ?>
+
         </div>
 
 <script type="text/javascript">
-// Hide the register box
-document.getElementById("registerbox").style.display = 'none';
-
-document.getElementById("register").addEventListener( "click", function() {
+<?php if( $site->page()->action() == 'register' ) : ?>
+    // Hide the login box
     document.getElementById("loginbox").style.display = 'none';
-    document.getElementById("registerbox").style.display = '';
-} );
-
-document.getElementById("login").addEventListener( "click", function() {
+<?php else : ?>
+    // Hide the register box
     document.getElementById("registerbox").style.display = 'none';
-    document.getElementById("loginbox").style.display = '';
-} );
+<?php endif; ?>
+
+    document.getElementById("register").addEventListener( "click", function() {
+        document.getElementById("loginbox").style.display = 'none';
+        document.getElementById("registerbox").style.display = '';
+    } );
+
+    document.getElementById("login").addEventListener( "click", function() {
+        document.getElementById("registerbox").style.display = 'none';
+        document.getElementById("loginbox").style.display = '';
+    } );
 </script>
 
 <?php snippet( 'footer' ); ?>

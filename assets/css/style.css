@@ -207,3 +207,31 @@ body {
     float: right;
     margin-right: 75px;
 }
+.login-alert {
+    clear: both;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 60px auto 0;
+    width: 200px;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.login-alert.success {
+    border: 1px solid #585;
+}
+.login-alert.error {
+    border: 1px solid #9d261d;
+}
+.login-alert h2 {
+    color: #fff;
+    margin: 0;
+    padding-left: 2px;
+    text-align: left;
+    width: 100%;
+}
+.login-alert.success h2 {
+    background: #585;
+}
+.login-alert.error h2 {
+    background: #9d261d;
+}
