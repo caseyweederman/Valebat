@@ -15,7 +15,11 @@
 
 // helper constants
 if(!defined('KIRBY'))     define('KIRBY',     true);
+if(!defined('DS'))        define('DS',        DIRECTORY_SEPARATOR);
 if(!defined('MB_STRING')) define('MB_STRING', (int)function_exists('mb_get_info'));
+
+// stop loading the toolkit if another toolkit has already been loaded
+if(defined('KIRBY_TOOLKIT_ROOT')) return;
 
 // define toolkit roots
 define('KIRBY_TOOLKIT_ROOT',     __DIR__);
@@ -62,9 +66,11 @@ $autoloader->aliases = array(
   'remote'     => 'Kirby\\Toolkit\\Remote',
   'router'     => 'Kirby\\Toolkit\\Router',
   's'          => 'Kirby\\Toolkit\\S',
+  'search'     => 'Kirby\\Toolkit\\Search',
   'server'     => 'Kirby\\Toolkit\\Server',
   'sql'        => 'Kirby\\Toolkit\\SQL',
   'str'        => 'Kirby\\Toolkit\\Str',
+  'thumb'      => 'Kirby\\Toolkit\\Thumb',
   'timer'      => 'Kirby\\Toolkit\\Timer',
   'tpl'        => 'Kirby\\Toolkit\\Tpl',
   'txtstore'   => 'Kirby\\Toolkit\\Txtstore',

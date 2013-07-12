@@ -49,7 +49,7 @@ function go($url = false, $code = false, $send = true) {
   * @param   mixed    $default Optional default value, which should be returned if no element has been found
   * @return  mixed
   */  
-function get($key = false, $default = null) {
+function get($key = null, $default = null) {
   return r::data($key, $default);
 }
 
@@ -113,7 +113,13 @@ function l($key = null, $default = null) {
  * @param mixed $variable Whatever you like to inspect
  */ 
 function dump($variable) {
-  a::show($variable);
+
+  if(is_object($variable) and method_exists($variable, '__toDump')) {
+    a::show($variable->__toDump());
+  } else {
+    a::show($variable);    
+  }
+
 }
 
 /**
@@ -255,4 +261,15 @@ function csfr($check = null) {
 
   return ($check === s::get('csfr')) ? true : false;
 
+}
+
+/**
+ * Shortcut to create a new thumb object
+ * 
+ * @param mixed Either a file path or an Asset object
+ * @param array An array of additional params for the thumb
+ * @return object Thumb
+ */
+function thumb($image, $params = array()) {
+  return new Thumb($image, $params);
 }

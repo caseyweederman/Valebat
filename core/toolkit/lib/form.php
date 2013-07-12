@@ -214,7 +214,10 @@ class Form {
    * @return The generated html
    */
   static public function button($name, $value, $attr = array()) {
-    return self::input('button', $name, $value, $attr);
+    $attr = array_merge(array(
+      'name' => $name
+    ), $attr);
+    return html::tag('button', $value, $attr);
   }
 
   /**
@@ -251,6 +254,13 @@ class Form {
    */
   static public function hidden($name, $value, $attr = array()) {
     return self::input('hidden', $name, $value, $attr);    
+  }
+
+  /**
+   * Builds a hidden field with a csfr token
+   */
+  static public function csfr($name = 'csfr') {
+    return self::hidden($name, csfr());    
   }
 
   /**

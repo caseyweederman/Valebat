@@ -61,7 +61,7 @@ class Pagination {
     );
 
     // You can still pass an entire collection
-    if(is_a($count, 'Collection')) {
+    if($count instanceof \Kirby\Toolkit\Collection) {
       $count = $count->count();
     }
       
@@ -319,7 +319,9 @@ class Pagination {
    * @return int
    */
   public function numEnd() {
-    return $this->offset+$this->limit;
+    $end = $this->offset+$this->limit;
+    if($end > $this->items()) $end = $this->items();
+    return $end;
   }
 
   /**
